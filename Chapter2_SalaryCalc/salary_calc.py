@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # Description: This program calculates annual salary based on hours
-# GitHub URL:
+# GitHub URL: https://github.com/dejohns2/CSC365_Spring2022_Assignments.git
 # Programmer: Debbie Johnson
 # Date: 2022.01.26
 
