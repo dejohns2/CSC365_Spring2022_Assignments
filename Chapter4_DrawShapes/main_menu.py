@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import globals
 import validation
 import moving_circle
 import draw_square
@@ -32,7 +31,7 @@ def display_menu():
 def main():
     while True:
         display_menu()
-        option = validation.get_int('Enter a menu option: ', 1, 2)
+        option = validation.get_int('Enter a menu option: ', 0, 2)
         if option == 1:
             draw_square.main()
         elif option == 2:
@@ -44,5 +43,4 @@ def main():
 
 
 if __name__ == "__main__":
-    globals.initialize()
     main()
