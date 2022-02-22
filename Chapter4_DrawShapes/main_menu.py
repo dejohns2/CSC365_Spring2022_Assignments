@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import globals
 import validation
 import moving_circle
 import draw_square
@@ -35,13 +34,9 @@ def main():
         display_menu()
         option = validation.get_int('Enter a menu option: ', 0, 2)
         if option == 1:
-            globals.turtle_setup()
             draw_square.main()
-            globals.turtle_recreation()
         elif option == 2:
-            globals.turtle_setup()
             moving_circle.main()
-            globals.turtle_recreation()
         elif option == 0:
             break
         else:
