@@ -1,14 +1,16 @@
 import turtle
-import gc
+
+wn = None
+t = None
 
 
 def turtle_setup():
     global wn, t
     wn = turtle.Screen()  # used to control the window
     t = turtle.Turtle()  # basically this is your cursor that you used to draw with
-    root_window = wn.getcanvas().winfo_toplevel()
-    root_window.call('wm', 'attributes', '.', '-topmost', '1')
-    root_window.call('wm', 'attributes', '.', '-topmost', '0')
+
+    root_window = wn.getcanvas().winfo_toplevel()  # get the top level turtle screen canvas
+    root_window.call('wm', 'attributes', '.', '-topmost', '1')  # and make it have the top focus
 
 
 def turtle_recreation():
