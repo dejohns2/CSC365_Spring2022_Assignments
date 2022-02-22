@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-import turtle
-# import globals
+import globals
 
 """
 This module contains functions related to drawing a square using turtle
@@ -17,7 +16,7 @@ __copyright__ = "Copyright 2022.02.10, Chapter 4 Assignment"
 __github__ = "https://github.com/dejohns2/CSC365_Spring2022_Code_Examples"
 
 
-def draw_square(t, length=100):
+def draw_square(length=100):
     """
     the draw_square_shape function is use to draw a square
 
@@ -28,25 +27,25 @@ def draw_square(t, length=100):
         no value
     """
 
-    t.hideturtle()  # make the turtle invisible
-    t.color("red")
-    t.width(50)  # line width
-    t.shape("turtle")
-    t.penup()  # don't draw when turtle moves
-    t.goto(-250, 50)  # move the turtle to a location
-    t.showturtle()  # make the turtle visible
-    t.pendown()  # draw when the turtle moves
+    globals.t.hideturtle()  # make the turtle invisible
+    globals.t.color("red")
+    globals.t.width(50)  # line width
+    globals.t.shape("turtle")
+    globals.t.penup()  # don't draw when turtle moves
+    globals.t.goto(-250, 50)  # move the turtle to a location
+    globals.t.showturtle()  # make the turtle visible
+    globals.t.pendown()  # draw when the turtle moves
 
-    t.color("green", "yellow")  # blue is the fill color
+    globals.t.color("green", "yellow")  # blue is the fill color
 
-    t.begin_fill()
+    globals.t.begin_fill()
 
     # draw square
     for _ in range(0, 4):
-        t.forward(length)  # Forward turtle by l units
-        t.left(90)  # Turn turtle by 90 degree
+        globals.t.forward(length)  # Forward turtle by l units
+        globals.t.left(90)  # Turn turtle by 90 degree
 
-    t.end_fill()
+    globals.t.end_fill()
 
 
 def main():
@@ -58,15 +57,11 @@ def main():
     Returns:
         no value
     """
-    wn = turtle.Screen()  # used to control the window
-    t = turtle.Turtle()   # basically this is your cursor that you used to draw with
 
-    wn.bgcolor("lightblue")
-    wn.title("SQUARE")
-    #wn.exitonclick()
-
-    draw_square(t, 100)
-
+    globals.wn.bgcolor("lightblue")
+    globals.wn.title("SQUARE")
+    draw_square(100)
+    globals.wn.mainloop()
 
 
 # if this is the program starting module, then run the main function
