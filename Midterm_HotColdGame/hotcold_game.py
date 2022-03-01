@@ -351,7 +351,6 @@ def start_game():
 
 # if this is the program starting module, then run the main function
 if __name__ == '__main__':
-    help("hotcold_game")
     s = turtle.Screen()     # set the global screen object used to configure the screen
     t = turtle.Turtle()     # set the global pen (cursor) used to draw with
     start_game()            # start the game & keep it looping
