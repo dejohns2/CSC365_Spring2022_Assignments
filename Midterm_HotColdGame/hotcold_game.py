@@ -84,7 +84,7 @@ def set_hidden_location():
 
     :return: None
     """
-    global hidden_x, hidden_y, circle_size
+    global hidden_x, hidden_y
 
     while True:
         hidden_x = random.randint(-420, 420)  # left & right position max
@@ -111,7 +111,7 @@ def set_circle_color():
     store the current x, y to previous x, y to get ready for the new user's move
     :return: None
     """
-    global x, y, previous_x, previous_y, hidden_x, hidden_y, user_color, hidden_color
+    global previous_x, previous_y, user_color, hidden_color
 
     # set the amount the user's circle must overlap by the dimension of both circles added together minus 10
     overlap = circle_size * 2 - 10
@@ -145,14 +145,14 @@ def set_circle_color():
 def debug():
     """
     Toggles debug mode making it easier to test the game.
-    If the hidden circle color is black (same as the background) change it to white otherwise change it back to black.
+    If the hidden circle color is black (same as the background) change it to gray otherwise change it back to black.
     The redisplay the game based on current settings.
     :return: None
     """
     global hidden_color
 
     if hidden_color == 'black':
-        hidden_color = 'white'
+        hidden_color = 'gray'
     else:
         hidden_color = 'black'
 
@@ -166,7 +166,6 @@ def move_home():
     :return: None
     """
 
-    global x, y
     set_center_location()  # call the function that set's the user's circle location to the center based on it's size
     display_game()
 
@@ -233,7 +232,6 @@ def display_instructions():
     and game's instruction on the screen in the upper left-hand corner
     :return: None
     """
-    global num_moves
 
     # write text on the screen
     t.penup()            # don't want to see icon moving on the screen
@@ -308,7 +306,7 @@ def setup_game():
     Setup the on key press listeners
     :return: None
     """
-    global num_moves, circle_size, move_size, hidden_color, x, y
+    global num_moves, circle_size, move_size, hidden_color
 
     num_moves = 0           # set the number of user's moves back to zero
     hidden_color = 'black'  # set the hidden circle to black which is the same color as the screen background
@@ -330,7 +328,7 @@ def setup_game():
         move_size = 50
 
     set_center_location()  # call the function that set's the user's circle location to the center based on it's size
-    set_hidden_location()   # generate te random x & y location for the hidden circle
+    set_hidden_location()   # generate the random x & y location for the hidden circle
 
     s.onkeypress(debug, 'd')
     s.onkeypress(start_game, 'r')
