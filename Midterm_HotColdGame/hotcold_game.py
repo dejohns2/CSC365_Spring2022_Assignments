@@ -165,7 +165,6 @@ def move_home():
     then call display_game to clear & redraw the screen based on the update user's circle location
     :return: None
     """
-
     set_center_location()  # call the function that set's the user's circle location to the center based on it's size
     display_game()
 
@@ -232,8 +231,6 @@ def display_instructions():
     and game's instruction on the screen in the upper left-hand corner
     :return: None
     """
-
-    # write text on the screen
     t.penup()            # don't want to see icon moving on the screen
     t.pencolor('white')  # text color
     t.goto(-450, 370)    # from the current position which is center after clear, move left 350 up 350
@@ -354,6 +351,7 @@ def start_game():
 
 # if this is the program starting module, then run the main function
 if __name__ == '__main__':
+    help("hotcold_game")
     s = turtle.Screen()     # set the global screen object used to configure the screen
     t = turtle.Turtle()     # set the global pen (cursor) used to draw with
     start_game()            # start the game & keep it looping
