@@ -147,7 +147,7 @@ def debug():
     """
     Toggles debug mode making it easier to test the game.
     If the hidden circle color is black (same as the background) change it to gray otherwise change it back to black.
-    The redisplay the game based on current settings.
+    then call display_game to clear & redraw the screen based on the update hidden color
     :return: None
     """
     global hidden_color
