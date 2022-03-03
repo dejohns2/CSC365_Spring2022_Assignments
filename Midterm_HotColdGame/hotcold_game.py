@@ -75,9 +75,10 @@ def set_center_location():
 
 def set_hidden_location():
     """
+    This function will keep looping until a valid hidden location is generated
     Generate a random x & y location for the hidden circle based on the default screen size
     Making sure that the hidden circle isn't too close to the user's circle and
-    can't be within twice the user's circle size + 10
+    abs(x) & abs(y) can't be within twice the user's circle size + 10
 
     left & right max: -420 & 420
     bottom & top max: -300 & 300
