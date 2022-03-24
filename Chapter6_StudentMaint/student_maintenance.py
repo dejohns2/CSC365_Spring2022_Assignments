@@ -7,9 +7,10 @@ This module contains the functions for adding, updating, and deleting student da
 
 import validation as v
 
-__author__ = "Debbie Johnson"
-__version__ = "1.0"
-__date__ = "2020.10.06"
+__author__ = 'Debbie Johnson'
+__version__ = '1.0'
+__date__ = '2022.03.24'
+__status__ = 'Development'
 
 
 def add_student(students, next_student_id):
@@ -79,13 +80,12 @@ def update_student(students):
         return
 
     new_first_name = input(f'Please enter the Student\'s First Name or press enter to keep {first_name}: ').title()
-    new_last_name = input(f'Please enter the Student\'s Last Name or press enter to keep {last_name}: ').title()
-
     if new_first_name > '':
         students[student_index][1] = new_first_name
     else:
         new_first_name = first_name
 
+    new_last_name = input(f'Please enter the Student\'s Last Name or press enter to keep {last_name}: ').title()
     if new_last_name > '':
         students[student_index][2] = new_last_name
     else:
@@ -195,5 +195,5 @@ def find_student_index(students, student_id):
     return -1
 
 
-if __name__ == "__main__":  # if this is the module where the program started from, then run the main function
+if __name__ == '__main__':  # if this is the module where the program started from, then run the main function
     help('student_maintenance')

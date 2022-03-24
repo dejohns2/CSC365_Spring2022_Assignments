@@ -9,9 +9,10 @@ This module contains the functions for displaying the main menu and running the 
 import student_maintenance as sm  # module with add, update, delete, etc logic
 import validation as v
 
-__author__ = "Debbie Johnson"
-__version__ = "1.0"
-__date__ = "2021.10.21"
+__author__ = 'Debbie Johnson'
+__version__ = '1.0'
+__date__ = '2022.03.24'
+__status__ = 'Development'
 
 
 def display_menu():
@@ -75,7 +76,7 @@ def main():
         else:
             print('Not a valid menu option.')
 
-        input("Press Enter to continue...")
+        input('Press Enter to continue...')
         print()
 
     print('Bye!')
@@ -83,6 +84,6 @@ def main():
     return
 
 
-if __name__ == "__main__":  # if this is the module where the program started from, then run the main function
+if __name__ == '__main__':  # if this is the module where the program started from, then run the main function
     # help('main_menu')
     main()
