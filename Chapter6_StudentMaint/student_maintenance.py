@@ -73,29 +73,28 @@ def update_student(students):
         print(f'Student ID #{student_id} was not found.')
         return
 
-    student_id, first_name, last_name = students[student_index]
+    student = students[student_index]
+    student_id, first_name, last_name = student
 
     if not v.get_yes_no(f'Do you want to update Student ID #{student_id} {first_name} {last_name}'):
         print('Student update cancelled!')
         return
 
     new_first_name = input(f'Please enter the Student\'s First Name or press enter to keep {first_name}: ').title()
-    if new_first_name > '':
-        students[student_index][1] = new_first_name
-    else:
-        new_first_name = first_name
-
     new_last_name = input(f'Please enter the Student\'s Last Name or press enter to keep {last_name}: ').title()
+
+    if new_first_name == '' and new_last_name == '':
+        print('No data changed.  Update Cancelled')
+        return
+
+    if new_first_name > '':
+        student[1] = new_first_name
+
     if new_last_name > '':
-        students[student_index][2] = new_last_name
-    else:
-        new_last_name = last_name
+        student[2] = new_last_name
 
     print()
-    if first_name == new_first_name and last_name == new_last_name:
-        print('Student\'s name was not changed. Update was cancelled.')
-    else:
-        print(f'Student ID #{student_id} {first_name} {last_name} was update to {new_first_name} {new_last_name}')
+    print(f'Student ID #{student_id} {first_name} {last_name} was update to {student[1]} {student[2]}')
 
     return
 
@@ -132,7 +131,8 @@ def delete_student(students):
         print(f'Student ID #{student_id} was not found.')
         return
 
-    student_id, first_name, last_name = students[student_index]
+    student = students[student_index]
+    student_id, first_name, last_name = student
 
     if not v.get_yes_no(f'Please confirm deleting Student ID #{student_id} {first_name} {last_name}'):
         print('Student delete cancelled!')
