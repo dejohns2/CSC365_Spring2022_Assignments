@@ -1,56 +1,94 @@
 #!/usr/bin/env python3
+
+"""
+Chapter 7 & 8 File I/O Competition Assignment
+"""
+
+__author__ = 'Debbie Johnson'
+__version__ = '1.0'
+__date__ = '2022.03.24'
+__status__ = 'Development'
+
 import csv
+import re
+import sys
 
-my_file_name = 'test.csv'
+valid_records = 0
+invalid_records = 0
 
-my_output_data = [
-    [1, 'Johnson, Debbie', [10.1, 20.25, 30.0, 40.0]],
-    [4, 'Book, Mac', [11.13, 30.5, 66.1, 43.1]],
-    [33, 'Bear, Teddie', [10.14, 24.2, 32.3, 3.0]]
-]
+invalid_length = 0
+invalid_id = 0
+invalid_name = 0
+invalid_email = 0
+invalid_phone = 0
 
-my_input_data = []
+print('Chapter 7 & 8 File I/O Competition')
+print('==================================')
 
+# valid ids must only contain digits 0-9
+id_pattern = re.compile(r'[0-9]+')
 
-def print_report(my_data):
-    """
-    Display the 3D list
-    :param my_data multi-dimensional list
-    :return no value
-    """
+# valid emails must have an @ .edu domain suffix
+email_pattern = re.compile(r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.(edu)')
 
-    if len(my_data) == 0:
-        print('There are no data in the list.')
-        return
+# valid phone numbers must be 111-222-3333 pattern
+phone_pattern = re.compile(r'[0-9]{3}-[0-9]{3}-[0-9]{4}')
 
-    for record in my_data:
-        student_id, student_name, student_grades = record
-        print(f'Student ID # {student_id} {student_name} grades: ')
-        print('    ', end='')
-        for grade in student_grades:
-            print(f'{grade:>3.2f}', end=' | ')
-        print()
+try:
+    with open('input_file.csv', 'r', newline='') as input_file, \
+            open('valid_file.csv', 'w', newline='') as valid_file, \
+            open('invalid_file.csv', 'w', newline='') as invalid_file:
 
-    print()
+        reader = csv.reader(input_file, delimiter='|')
+        valid_writer = csv.writer(valid_file, delimiter=',')
+        invalid_writer = csv.writer(invalid_file, delimiter='|')
 
+        for row in reader:
+            invalid_data = ''
 
-with open(my_file_name, 'w', newline='') as file_object:
-    writer = csv.writer(file_object)
-    writer.writerows(my_output_data)
+            try:
+                id, name, email, phone = row
+            except:
+                invalid_length += 1
+                invalid_writer.writerow(['L', *row])
+                continue
 
-temp1 = []
-with open(my_file_name, 'r', newline='') as file_object:
-    reader = csv.reader(file_object)
-    for row in reader:
-        temp1.append(row)
+            try:
+                id = int(id)
+            except:
+                invalid_id += 1
+                invalid_data += 'I'
 
-for row in temp1:
-    grades_str = row[2][1:-1]
-    grades_list_str = grades_str.split(', ')
-    temp2 = []
-    for i in grades_list_str:
-        temp2.append(float(i))
-    my_input_data.append([int(row[0]), row[1], temp2])
+            try:
+                last_name, first_name = name.split(',')
+            except:
+                invalid_name += 1
+                invalid_data += 'N'
 
-print_report(my_output_data)
-print_report(my_input_data)
+            if not re.search(email_pattern, email):
+                invalid_email += 1
+                invalid_data += 'E'
+
+            if not re.search(phone_pattern, phone):
+                invalid_phone += 1
+                invalid_data += 'P'
+
+            if invalid_data > '':
+                invalid_records +=1
+                invalid_writer.writerow([invalid_data, *row])
+            else:
+                valid_records += 1
+                phone = phone.replace('-', '.')
+                valid_writer.writerow([id, first_name, last_name, email, phone])
+
+except Exception as e:
+    traceback.print_exception(*sys.exc_info())
+finally:
+    print(f'Total Records: {valid_records + invalid_records}')
+    print(f'Valid Records: {valid_records}')
+    print(f'Invalid Records: {invalid_records}')
+    print(f'        Length: {invalid_length}')
+    print(f'        ID: {invalid_id}')
+    print(f'        Name: {invalid_name}')
+    print(f'        Email: {invalid_email}')
+    print(f'        Phone: {invalid_phone}')
