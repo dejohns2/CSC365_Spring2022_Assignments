@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-This module contains the functions for displaying the main menu and running the menu options
+This script contains the functions for displaying the main menu and running the menu options
 """
 
 import queries
 
 __author__ = "Debbie Johnson"
 __version__ = "1.0"
-_date__ = "2020.11.05"
+_date__ = "2022.04.01"
 
 
 def display_menu():
@@ -21,12 +21,12 @@ def display_menu():
     print('===========================')
     print('1 - Students Information')
     print('2 - All Sports List')
-    print('3 - Each Class Genders')
+    print('3 - Each Course Genders')
     print('4 - Sue Smith Class List')
     print('5 - Student in Science not Math')
     print('6 - NonSports Groups')
     print('7 - All Season Sports Students')
-    print('8 - Students Classes same as Sue Smith')
+    print('8 - Students Courses same as Sue Smith')
     print('9 - Student with Low Grades')
     print('0 - Exit program')
     print()
@@ -53,9 +53,9 @@ def main():
             elif menu_num == 2:
                 queries.all_sports_list()
             elif menu_num == 3:
-                queries.each_class_genders()
+                queries.each_course_genders()
             elif menu_num == 4:
-                queries.sue_smith_class_list()
+                queries.sue_smith_course_list()
             elif menu_num == 5:
                 queries.students_in_science_not_math()
             elif menu_num == 6:
@@ -63,7 +63,7 @@ def main():
             elif menu_num == 7:
                 queries.all_seasons_sports_students()
             elif menu_num == 8:
-                queries.student_classes_same_as_sue_smith()
+                queries.student_courses_same_as_sue_smith()
             elif menu_num == 9:
                 queries.students_with_low_grades()
             elif menu_num == 0:

@@ -1,260 +1,314 @@
 import student_data as data
 
+"""
+This module contains the functions for querying the student data containers
+"""
 
-###########################################################################################
-# This function is used by other functions to display a list of student's id & names
-###########################################################################################
+__author__ = "Debbie Johnson"
+__version__ = "1.0"
+_date__ = "2022.04.01"
+
+
 def list_students(student_ids):
+    """
+    Display a list of students ids & names used by other functions.  Example:
+
+    13 Amy Hans
+    41 Joe Jones
+
+    :param student_ids: a list of all students to display
+    :return: n/a
+    """
+
     for student_id in student_ids:
-        print(student_id, data.students[student_id]['firstName'],
-              data.students[student_id]['lastName'])
+        print(student_id,
+              data.students.get(student_id).get('first_name'),
+              data.students.get(student_id).get('last_name')
+              )
 
 
-###########################################################################################
-# Display the student information
-# Example of report
-# -----------------------------------
-# ID: 31 Bob Smith
-#	Groups: basketball, track, student council
-#	English [80, 100]
-#	Science [100, 80]
-###########################################################################################
 def student_information():
+    """
+    Display the student information. Report Example:
+
+    ================================================================================
+    Student Information
+    ================================================================================
+    ID: 31 Bob Smith
+       Groups: track, basketball, student council,
+       english [80, 100]
+       science [100, 80]
+
+    :return: n/a
+    """
 
     print('=' * 80)
     print("Student Information")
     print('=' * 80)
 
-	# for loop for displaying the data
-	# for key (student id), value (student info dict) in 2D data.students dict items
-	# 	display student id (key) and name (value)
-	#
-	# 	for each group in student’s groups set
-	# 		display the student’s group set using a print with end=’, ‘
-	#
-	# 	for key (class), value (class grades dict) in 2D grades dict items
-	# 		if student id (outer key) in class grades dict
-	#			display class (key), and student’s grade list (value)
-	
+    # loop through all students
+        # loop through all the courses
+        # and if the student is in the course
+        # then display the course name and grades list
 
-###########################################################################################
-# All Sports List
-###########################################################################################
+
 def all_sports_list():
+    """
+    List all sports. Report example:
+
+    ================================================================================
+    All Sports
+    ================================================================================
+    baseball
+    basketball
+    cross country
+    football
+    softball
+    track
+    volleyball
+    wrestling
+
+    :return: n/a
+    """
+
     print('=' * 80)
     print("All Sports")
     print('=' * 80)
 
-    sports = list()
+    # create an empty list that will store all sports
 
-	# building the sports list
-	#--------------------------------------------------------------------------------------	
-	# for key (season), value (season sports set) in 2D data.sports dict items
-	# 	append the current season’s sports set (value) to sports list by...
-	# 	converting the set to a list and using the extend function to append it...
-	# 	nested the list function inside the extend function to do this with one statement
+    # loop through each season one at a time
+    # convert the current season's set to a list
+    # add the current season's list to the full list using the extend method to add more than one item
 
-	# sort list
-	
-	# for loop for displaying the list
-	
+    # sort the list
+    # use the iterator unpack operator to list all sport on it's own line, example:
+    print(*all_sports, sep='\n')
 
-###########################################################################################
-# Each Class Genders
-#
-# Example of class_gender dict:
-# -----------------------------------
-# 'math': {'Female': 3, 'Male': 1}
-# 'english': {'Female': 3, 'Male': 2}
-# 'science': {'Female': 3, 'Male': 2}
-# 
-# Example of report
-# -----------------------------------
-# Math: Male = 1 Female = 3
-# English: Male = 2 Female = 3
-# Science: Male = 2 Female = 3
-#
-###########################################################################################
-def each_class_genders():
+
+def each_course_genders():
+    """
+    Lists each course's genders
+
+    This functions will create a nested subjectGender dict used to produce the report:
+        'math': {'Female': 3, 'Male': 1}
+        'english': {'Female': 3, 'Male': 2}
+        'science': {'Female': 3, 'Male': 2}
+
+    Report Example:
+
+    ================================================================================
+    Each Class Genders
+    ================================================================================
+    math: Male = 1 Female = 3
+    english: Male = 2 Female = 3
+    science: Male = 2 Female = 3
+
+    :return: n/a
+    """
+
     print('=' * 80)
     print("Each Class Genders")
     print('=' * 80)
 
-    class_genders = dict()
+    # create a temporary dictionary that store the course's gender counts
+    # example: 'math': {'Female': 3, 'Male': 1}
 
-	# building the class_genders dictionary
-	#--------------------------------------------------------------------------------------
-	# for key (class name), value (class grades dict) in data.grades dict items
-	#	set male and female counters to 0
-	#
-	#	for key (student id), value (student grades list) in class grades dict (value) items
-	#		get gender for the current student id (key) from the 2D data.students dict
-	#		if to increment the correct gender counter	
-	#
-	#	append to the class gender dict, using the class as the key, and...
-	#   a dict with female and male counts (see above example)
-	
-	# for loop for displaying the dictionary
-	for key (class), value (genders dict) in class gender 2D dict items
-		display the course, and genders dict
+    # loop through each course one at a time
+        # reset the counter for each season
+
+        # loop through each student in the course, and increment the counters
+
+        # after counting the gender for one course, add the course info to the temp reporting dictionary
+
+    # print the report by looping through the temporary reporting dictionary that was just created
 
 
-###########################################################################################
-# Sue Smith Class LIst
-###########################################################################################
-def sue_smith_class_list():
+def sue_smith_course_list():
+    """
+    Sue Smith Class List. Report Example:
+
+    ================================================================================
+    Sue Smith Class List
+    ================================================================================
+    math, english, science
+
+    :return: n/a
+    """
+
     print('=' * 80)
     print("Sue Smith Class List")
     print('=' * 80)
 
-    sue_smith_classes = list()
+    # create a temporary list that will store sue's courses
 
-	# building the sue_smith_classes list
-	#--------------------------------------------------------------------------------------
-	# for key (student id), value (student info dict) in 2d data.students dict items
-	#	get first and last names from the student info dict (value)
-	#	if the first name = Sue and the last name = Smith
-	#		for key (class), value (class grades dict) in 2D data.grades dict items
-	#			if student id (outer key) in class grades dict (value)
-	#				add the class name (key) to sue_smith_classes list with the append method
-	
+    # loop through all students to locate Sue Smith
+        # get the first name
+        # get the last name
+        # if the student's name is Sue Smith
+            # loop through all courses to find Sue Smith
+            # if Sue Smith is in the course then append the course name to the temporary list
+
     # sort the list
+    # use the iterator unpack operator to list each course on it's own line
 
-    # for loop for displaying sue_smith_classes list
 
-###########################################################################################
-# Students in Science not Math
-###########################################################################################
 def students_in_science_not_math():
+    """
+    Students in science not math.  Report Example:
+
+    ================================================================================
+    Students in science not math:
+    ================================================================================
+    31# Bob Smith
+    55# Sue Johnson
+
+    :return: n/a
+    """
+
     print('=' * 80)
-    print("Students in Science but not in Math")
+    print("Students in science but not in math")
     print('=' * 80)
 
-    science_not_math = list()
+    # create an temporary list (science_not_math) that will store student ids that are in science but not math
 
-	# building science_not_math list
-	#--------------------------------------------------------------------------------------	
-	# for key (student id) in 2d students dict keys
-	#	if student id (key) in data.grades Science and student id (key) NOT in data.grades Math
-	#		append student id (key) to science_not_math list
-	
+    # loop through each student id key (don't need the values too)
+        # if the student is in science but not math then append the student_id to the temporary list
+
     # sort the list
+    list_students(science_not_math) # common function for displaying a list of students
 
-    list_students(science_not_math)
 
-
-###########################################################################################
-# NonSports groups
-###########################################################################################
 def non_sports_groups():
+    """
+    List NonSports groups.  Report Example:
+
+    ================================================================================
+    Non-Sports Groups
+    ================================================================================
+    student council
+    national honor society
+
+    :return: n/a
+    """
+
     print('=' * 80)
     print("NonSports Groups")
     print('=' * 80)
 
-    sports = set()
-    non_sports = list()
+    # create a temporary set for storing all sports
+    # create a temporary list for storing all non sports related group
 
-	# build the sports set
-	#--------------------------------------------------------------------------------------		
-	# for key (season), value (season sports set) in 2D data.sports dict items
-	#	append the season sports set to the sports set using update method (multiple values)
-	
-	# build the non_sports list
-	#--------------------------------------------------------------------------------------		
-    # for key (student id), value (student info dict) in data.students dict items
-    #    student groups = student info dict groups
-    #    whats left = student groups - sports set
-    #    if len whats left (not 0)
-    #        append *whats left to non_sports list using the * to convert the set to a tuple
-			
-	# sort the non_sports list
-	
-	# for loop for displaying the non_sports list
+    # loop through each season
+        # use the update method to append a set to a set
+
+    # loop through each student
+        # get the student's groups
+        # use the - operator to get the differences between the current student's groups and all sports
+        # if there are any non-sports related groups then append them to the temporary list
+
+    # sort the list
+    # use the iterator unpack operator to list all sport on it's own line
 
 
-###########################################################################################
-# All Season Sports Students
-###########################################################################################
 def all_seasons_sports_students():
+    """
+    All Season Sports Students.  Report Example:
+
+    ================================================================================
+    Students in All Four Seasons of Sports
+    ================================================================================
+    22 Sue Smith
+    41 Joe Jones
+
+    :return: n/a
+    """
+
     print('=' * 80)
     print("All Seasons Sports Students")
     print('=' * 80)
 
-    all_seasons = list()
+    # create an temporary list to store student ids that are in all sports
 
-	# build the all season list
-	#--------------------------------------------------------------------------------------		
-    #for key (student id), value (student info) in 2d data.students items
-    #    student groups = student info dict groups
-    #    if student groups & data.sports fall \
-    #            and student groups & data.sports winter \
-    #            and student groups & data.sports spring \
-    #            and student groups & data.sports summer
-    #        append student id (key) to all_seasons list
-			
+    # loop through students one at a time
+        # get the student's groups
+        # if the student_groups isn't empty and student's groups intersect (&) with each season
+        # then append to the temporary list
+
     # sort the list
-	
-    list_students(all_seasons)
+    # use the common function for displaying a list of students
 
 
-###########################################################################################
-# Students classes same as Sue Smith
-###########################################################################################
-def student_classes_same_as_sue_smith():
+def student_courses_same_as_sue_smith():
+    """
+    Students coursees same as Sue Smith.  Report Example:
+
+    ================================================================================
+    Students in Same Classes as Sue Smith
+    ================================================================================
+    13 Amy Hans
+    41 Joe Jones
+
+    :return: n/a
+    """
+
     print('=' * 80)
     print("Students Classes same as Sue Smith")
     print('=' * 80)
 
-    sue_smith_classes = set()
-    same_as_sue_smith = list()
-	students_classes = dict()
+    # create a temporary set to store all sue smith's courses
+    # create a temporary list to store student ids of students in the same courses as Sue Smith
+    # create a temporary dictionary to store
 
-	# build both sue_smith_classes set, and students_classes dict
-	#--------------------------------------------------------------------------------------		
-    # for key (student id), value (student info dict) in 2D data.students dict items
-    #    student_classes = set()
-    #    first_name = student info dict firstName
-    #    last_name = student info dict lastName
-    #    for key (class name), value (class grades dict) in 2D data.grades items
-    #        if student id (outer key) in class grades dict
-    #            append class name (key) to student_classes set using add
-    #    if name equals Sue Smith
-    #       set sue_smith_classes list to student_classes
-    #    else
-    #		add the student id (outer key) students_classes value to student_classes
-			
-	# for loop for building same_as_sue_smith list
-    # for key (student id), value (classes) in students_classes items
-    #    if classes (value) equals sue_smith_classes
-    #        append student id (key) to same_as_sue_smith list
-			
-			
-	# sort same_as_sue_smith list
-	
-    list_students(same_as_sue_smith)
+    # loop through each student one at a time
+        # create an empty set for each student that will store the courses they are in
+
+        # get the student's first and last name
+
+        # loop through each course grades and if the current student is in the course
+        # then add the course to the student's temporary set of courses
+
+        # after building the current student's course set see if the student is Sue Smith
+        # if so, update Sue Smith's set
+        # else store the current student's course set into a dictionary that will be used for the final report
+
+    # loop through the temporary dictionary of all student besides Sue Smith
+    # if the current student's course set matches Sue Smith's courses
+    # then append the student id to the temporary list
+
+    # sort the list
+    # use the common function for displaying a list of students
 
 
 ###########################################################################################
 # Students with low grades
 ###########################################################################################
 def students_with_low_grades():
+    """
+    Students with low grades.  Report Example:
+
+    ================================================================================
+    Students with Low Grades
+    ================================================================================
+    41 Joe Jones
+    45 Sue Johnson
+
+    :return: n/a
+    """
+
     print('=' * 80)
     print("Students with Low Grades")
     print('=' * 80)
 
-    low_grades = set()
+    # create a temporary set that will store all student ids with low grades
+    # we are using a set because a set doesn't store duplicates and it's possible
+    # that a student has a low grade in more than one course
 
-	# building low_grades set
-	#--------------------------------------------------------------------------------------		
-    # for key (student id), value (student info) in 2D data.students items
-    #    for key (class name), value (student grades dict) in data.grades items
-    #        if student id (outer key) in student grades dict (value)
-    #            grade total = sum of student grades student_id (outer key) to grade total
-	#	 grade count = len of student grades student_id (outer key) to grade count
-	#	 calculate average
-    #            if average < 70
-    #               add student id (outer key) to low_grades set
-					
-	# convert to list and sort
-	
-    list_students(low_grades_list)
+    # loop through each student one at a time
+        # loop through all courses one at a time
+        # if the student is in the course then calculate their grade average
+        # if it's below 70 add the student id to the temporary set
+
+    # convert the set to a list so we can sort it
+    # sort the list
+    # use the common function for displaying a list of students
